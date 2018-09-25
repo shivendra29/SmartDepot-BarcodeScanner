@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //View Objects
     private Button buttonScan , blockButton;
-    private TextView textViewName, textViewAddress, hideAddress, lastname;
+    private TextView textViewName, textViewAddress, hideAddress, lastname, hidelastname;
 
     //qr code scanner object
     private IntentIntegrator qrScan;
@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getSupportActionBar().hide();
 
 
         setContentView(R.layout.activity_main);
@@ -38,11 +42,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewAddress = (TextView) findViewById(R.id.textViewAddress);
         hideAddress = (TextView) findViewById(R.id.addressText);
+        hidelastname = findViewById(R.id.textLastname);
         lastname = findViewById(R.id.lastname);
         blockButton = (Button) findViewById(R.id.Blockbutton);
 
 
         blockButton.setVisibility(View.GONE);
+        hidelastname.setVisibility(View.GONE);
+        hideAddress.setVisibility(View.GONE);
+
 
         //intializing scan object
         qrScan = new IntentIntegrator(this);
@@ -65,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //converting the data to json
                     final JSONObject obj = new JSONObject(result.getContents());
                     //setting values to textviews
+                    hidelastname.setVisibility(View.VISIBLE);
+                    hideAddress.setVisibility(View.VISIBLE);
                     textViewName.setText(obj.getString("fname"));
                     textViewAddress.setText(obj.getString("address"));
                     lastname.setText(obj.getString("lname"));
@@ -103,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                     textViewName.setText(result.getContents());
                     hideAddress.setText(null);
+                    hidelastname.setText(null);
 
                 }
             }
