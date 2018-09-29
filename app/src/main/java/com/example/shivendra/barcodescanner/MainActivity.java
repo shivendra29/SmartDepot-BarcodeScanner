@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //View Objects
     private Button buttonScan , blockButton;
-    private TextView textViewName, textViewAddress, hideAddress, lastname, hidelastname;
+    private TextView textViewName, textViewAddress, hideAddress, lastname, hidelastname,changeretail;
 
     //qr code scanner object
     private IntentIntegrator qrScan;
@@ -45,11 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hidelastname = findViewById(R.id.textLastname);
         lastname = findViewById(R.id.lastname);
         blockButton = (Button) findViewById(R.id.Blockbutton);
+        changeretail = findViewById(R.id.retailer_change);
 
 
         blockButton.setVisibility(View.GONE);
         hidelastname.setVisibility(View.GONE);
         hideAddress.setVisibility(View.GONE);
+
 
 
         //intializing scan object
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //converting the data to json
                     final JSONObject obj = new JSONObject(result.getContents());
                     //setting values to textviews
+                    changeretail.setText("Retailer Detail");
                     hidelastname.setVisibility(View.VISIBLE);
                     hideAddress.setVisibility(View.VISIBLE);
                     textViewName.setText(obj.getString("fname"));
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //in this case you can display whatever data is available on the qrcode
                     //to a toast
                     //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                    changeretail.setText("Contents: ");
                     textViewName.setText(result.getContents());
                     hideAddress.setText(null);
                     hidelastname.setText(null);

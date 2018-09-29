@@ -25,9 +25,10 @@
 
 
         <TextView
+            android:id="@+id/retailer_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Content" />
+            android:text="Contents: " />
 
         <TextView
             android:id="@+id/textViewName"
@@ -40,7 +41,7 @@
             android:id="@+id/textLastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Last Name" />
+            android:text="Batch Number" />
 
         <TextView
             android:id="@+id/lastname"
@@ -53,7 +54,7 @@
             android:id="@+id/addressText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Address" />
+            android:text="Serial Number" />
 
         <TextView
             android:id="@+id/textViewAddress"
